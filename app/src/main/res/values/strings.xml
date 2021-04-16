@@ -1,3 +1,22 @@
 <resources>
     <string name="app_name">SimpleCalculator</string>
+    <string name="_one_symbol">1</string>
+    <string name="_two_symbol">2</string>
+    <string name="_three_symbol">3</string>
+    <string name="_four_symbol">4</string>
+    <string name="_five_symbol">5</string>
+    <string name="_six_symbol">6</string>
+    <string name="_seven_symbol">7</string>
+    <string name="_eight_symbol">8</string>
+    <string name="_nine_symbol">9</string>
+    <string name="_zero_symbol">0</string>
+    <string name="_dot_symbol">.</string>
+    <string name="_plus_symbol">+</string>
+    <string name="_minus_symbol">-</string>
+    <string name="_multiply_symbol">*</string>
+    <string name="_divide_symbol">/</string>
+    <string name="_equal_symbol">=</string>
+    <string name="_reset_symbol">AC</string>
+    <string name="_backspace_symbol">⌫</string>
+    <string name="_percent">%</string>
 </resources>
