@@ -19,4 +19,5 @@
     <string name="_reset_symbol">AC</string>
     <string name="_backspace_symbol">⌫</string>
     <string name="_percent">%</string>
+    <string name="_0">0</string>
 </resources>
