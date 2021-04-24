@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="lightButtons">
+        <!-- высоту и ширину добавил в стиль только по причине,
+         что они одинаковые для всех кнопок проекта -->
+        <item name="android:textSize">@dimen/_main_text_size</item>
+        <item name="android:backgroundTint">@color/royalBlue</item>
+        <item name="android:layout_marginEnd">@dimen/_button_margin_right</item>
+        <item name="android:layout_width">@dimen/_zero_dp</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="lightEndButtons">
+        <item name="android:textSize">@dimen/_main_text_size</item>
+        <item name="android:backgroundTint">@color/royalBlue</item>
+        <item name="android:layout_width">@dimen/_zero_dp</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="textViewStyleVertical">
+        <item name="android:layout_marginLeft">@dimen/_standard_margin</item>
+        <item name="android:layout_marginTop">@dimen/_frame_side_margin</item>
+        <item name="android:layout_marginRight">@dimen/_standard_margin</item>
+        <item name="android:layout_marginBottom">@dimen/_frame_side_margin</item>
+        <item name="android:background">@drawable/frame_for_texts</item>
+        <item name="android:padding">@dimen/_text_padding</item>
+        <item name="android:textSize">@dimen/_main_text_size</item>
+        <item name="android:textAlignment">textEnd</item>
+    </style>
+
+    <style name="textViewStyleHorizontal">
+        <item name="android:layout_marginLeft">@dimen/_standard_margin</item>
+        <item name="android:layout_marginTop">@dimen/_button_margin_8dp</item>
+        <item name="android:layout_marginRight">@dimen/_standard_margin</item>
+        <item name="android:layout_marginBottom">@dimen/_frame_side_margin_horizontal</item>
+        <item name="android:background">@drawable/frame_for_texts</item>
+        <item name="android:padding">@dimen/_text_padding</item>
+        <item name="android:textSize">@dimen/_main_text_size</item>
+        <item name="android:textAlignment">textEnd</item>
+    </style>
+</resources>
