@@ -2,10 +2,7 @@
 <resources>
 
     <style name="lightButtons">
-        <!-- высоту и ширину добавил в стиль только по причине,
-         что они одинаковые для всех кнопок проекта -->
         <item name="android:textSize">@dimen/_main_text_size</item>
-        <item name="android:backgroundTint">@color/royalBlue</item>
         <item name="android:layout_marginEnd">@dimen/_button_margin_right</item>
         <item name="android:layout_width">@dimen/_zero_dp</item>
         <item name="android:layout_height">wrap_content</item>
@@ -13,7 +10,6 @@
 
     <style name="lightEndButtons">
         <item name="android:textSize">@dimen/_main_text_size</item>
-        <item name="android:backgroundTint">@color/royalBlue</item>
         <item name="android:layout_width">@dimen/_zero_dp</item>
         <item name="android:layout_height">wrap_content</item>
     </style>
@@ -39,4 +35,12 @@
         <item name="android:textSize">@dimen/_main_text_size</item>
         <item name="android:textAlignment">textEnd</item>
     </style>
+
+    <style name="darkThemeButtons" parent="Widget.MaterialComponents.Button">
+
+        <item name="android:textSize">@dimen/_main_text_size</item>
+        <item name="backgroundTint">@color/royalBlue</item>
+
+    </style>
+
 </resources>

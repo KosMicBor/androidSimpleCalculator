@@ -20,4 +20,12 @@
     <string name="_backspace_symbol">⌫</string>
     <string name="_percent">%</string>
     <string name="_0">0</string>
+    <string name="moon_symbol">☾</string>
+    <string name="sun_symbol">☼</string>
+    <string name="_choose_theme">Выбор темы</string>
+    <string name="theme_tip_text">Выберите одну из тем приложения ниже</string>
+    <string name="standard_style_text">Стандартный стиль: синий</string>
+    <string name="punk_style_text">Розовый стиль</string>
+    <string name="green_style_text">Зелёный стиль</string>
+    <string name="dark_theme_text">Тёмная тема</string>
 </resources>

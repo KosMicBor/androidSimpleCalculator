@@ -10,4 +10,11 @@
     <dimen name="_frame_side_margin_horizontal">16dp</dimen>
     <dimen name="_zero_dp">0dp</dimen>
     <dimen name="_hor_text_margin">8dp</dimen>
+    <dimen name="theme_dark_symbols_size">22sp</dimen>
+    <dimen name="theme_light_symbols_size">24sp</dimen>
+    <dimen name="_0dp">0dp</dimen>
+    <dimen name="_s_symbol_height">38dp</dimen>
+    <dimen name="_16dp">16dp</dimen>
+    <dimen name="_300dp">300dp</dimen>
+    <dimen name="_64dp">64dp</dimen>
 </resources>

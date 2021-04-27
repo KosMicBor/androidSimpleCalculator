@@ -9,4 +9,8 @@
     <color name="white">#FFFFFFFF</color>
     <color name="button_bg_color">#1E90FF</color>
     <color name="royalBlue">#4169e1</color>
+    <color name="darkGreen">#006400</color>
+    <color name="punk">#ff34b3</color>
+    <color name="lightGreen">#2E8B57</color>
+    <color name="lightGreen_700">#3CB371</color>
 </resources>

@@ -4,6 +4,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 
 import android.widget.Button;
@@ -14,12 +16,16 @@ import java.util.ArrayList;
 
 import gu_android_1089.simplecalculator.R;
 import gu_android_1089.simplecalculator.main_logic.Calculator;
+import gu_android_1089.simplecalculator.main_logic.ThemesVariants;
 
 public class MainCalcActivity extends AppCompatActivity implements CalcViewInterface {
+    private final int REQUEST_THEME_TYPE = 255;
     private final int ONE_VALUE = 1;
     private final static String KEY_DATA_SAVER = "DataSaver";
+    private final static  String TEXT = "CALL HIM";
 
     private CalcPresenter presenter;
+    private ThemeSaver themeSaver;
     private TextView resultFrame;
     private double result = 0;
     private ArrayList<String> resultList = new ArrayList<>();
@@ -27,23 +33,20 @@ public class MainCalcActivity extends AppCompatActivity implements CalcViewInter
     private double arg2 = 0;
     private char operand = ' ';
     private CalcDataSaver dataSaver = new CalcDataSaver(arg1, arg2, result, resultList);
+    private final int[] arrayButtonsIDs = {
+            R.id.button_zero, R.id.button_one, R.id.button_two, R.id.button_three,
+            R.id.button_four, R.id.button_five, R.id.button_six, R.id.button_seven,
+            R.id.button_eight, R.id.button_nine
+    };
 
-    @SuppressLint("ResourceAsColor")
+    @SuppressLint({"ResourceAsColor", "UseCompatLoadingForDrawables"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        themeSaver = new ThemeSaver(this);
+        setTheme(themeSaver.getCurrentTheme().getResource());
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calc_main);
         resultFrame = findViewById(R.id.resultShowingField);
-        Button buttonOne = findViewById(R.id.button_one);
-        Button buttonTwo = findViewById(R.id.button_two);
-        Button buttonThree = findViewById(R.id.button_three);
-        Button buttonFour = findViewById(R.id.button_four);
-        Button buttonFive = findViewById(R.id.button_five);
-        Button buttonSix = findViewById(R.id.button_six);
-        Button buttonSeven = findViewById(R.id.button_seven);
-        Button buttonEight = findViewById(R.id.button_eight);
-        Button buttonNine = findViewById(R.id.button_nine);
-        Button buttonZero = findViewById(R.id.button_zero);
         Button buttonDot = findViewById(R.id.button_dot);
         Button buttonReset = findViewById(R.id.button_reset);
         Button buttonBackspace = findViewById(R.id.button_backspace);
@@ -53,58 +56,11 @@ public class MainCalcActivity extends AppCompatActivity implements CalcViewInter
         Button buttonPlus = findViewById(R.id.button_plus);
         Button buttonEquals = findViewById(R.id.button_equals);
         Button buttonPercent = findViewById(R.id.button_percent);
-
+        Button chooseThemeButton = findViewById(R.id.chooseThemeButton);
         presenter = new CalcPresenter(new Calculator(), this);
 
-        buttonOne.setOnClickListener(v -> {
-            resultList.add("1");
-            viewResult(getStringOfArray(resultList));
-        });
 
-        buttonTwo.setOnClickListener(v -> {
-            resultList.add("2");
-            viewResult(getStringOfArray(resultList));
-        });
-
-        buttonThree.setOnClickListener(v -> {
-            resultList.add("3");
-            viewResult(getStringOfArray(resultList));
-        });
-
-        buttonFour.setOnClickListener(v -> {
-            resultList.add("4");
-            viewResult(getStringOfArray(resultList));
-        });
-
-        buttonFive.setOnClickListener(v -> {
-            resultList.add("5");
-            viewResult(getStringOfArray(resultList));
-        });
-
-        buttonSix.setOnClickListener(v -> {
-            resultList.add("6");
-            viewResult(getStringOfArray(resultList));
-        });
-
-        buttonSeven.setOnClickListener(v -> {
-            resultList.add("7");
-            viewResult(getStringOfArray(resultList));
-        });
-
-        buttonEight.setOnClickListener(v -> {
-            resultList.add("8");
-            viewResult(getStringOfArray(resultList));
-        });
-
-        buttonNine.setOnClickListener(v -> {
-            resultList.add("9");
-            viewResult(getStringOfArray(resultList));
-        });
-
-        buttonZero.setOnClickListener(v -> {
-            resultList.add("0");
-            viewResult(getStringOfArray(resultList));
-        });
+        setNumberButtonListeners();
 
         buttonDot.setOnClickListener(v -> {
             resultList.add(".");
@@ -118,8 +74,12 @@ public class MainCalcActivity extends AppCompatActivity implements CalcViewInter
 
         buttonPlus.setOnClickListener(v -> {
             try {
-                arg1 = Double.parseDouble(getStringOfArray(resultList));
-                operand = '+';
+                if (resultList.isEmpty()) {
+                    arg1 = result;
+                } else {
+                    arg1 = Double.parseDouble(getStringOfArray(resultList));
+                    operand = '+';
+                }
                 resultList.clear();
             } catch (NumberFormatException e) {
                 Toast.makeText(this, "Введено слишком большое число",
@@ -129,8 +89,12 @@ public class MainCalcActivity extends AppCompatActivity implements CalcViewInter
 
         buttonDivide.setOnClickListener(v -> {
             try {
-                arg1 = Double.parseDouble(getStringOfArray(resultList));
-                operand = '/';
+                if (resultList.isEmpty()) {
+                    arg1 = result;
+                } else {
+                    arg1 = Double.parseDouble(getStringOfArray(resultList));
+                    operand = '/';
+                }
                 resultList.clear();
             } catch (NumberFormatException e) {
                 Toast.makeText(this, "Введено слишком большое число",
@@ -140,8 +104,12 @@ public class MainCalcActivity extends AppCompatActivity implements CalcViewInter
 
         buttonMinus.setOnClickListener(v -> {
             try {
-                arg1 = Double.parseDouble(getStringOfArray(resultList));
-                operand = '-';
+                if (resultList.isEmpty()) {
+                    arg1 = result;
+                } else {
+                    arg1 = Double.parseDouble(getStringOfArray(resultList));
+                    operand = '-';
+                }
                 resultList.clear();
             } catch (NumberFormatException e) {
                 Toast.makeText(this, "Введено слишком большое число",
@@ -151,8 +119,12 @@ public class MainCalcActivity extends AppCompatActivity implements CalcViewInter
 
         buttonMultiply.setOnClickListener(v -> {
             try {
-                arg1 = Double.parseDouble(getStringOfArray(resultList));
-                operand = '*';
+                if (resultList.isEmpty()) {
+                    arg1 = result;
+                } else {
+                    arg1 = Double.parseDouble(getStringOfArray(resultList));
+                    operand = '*';
+                }
                 resultList.clear();
             } catch (NumberFormatException e) {
                 Toast.makeText(this, "Введено слишком большое число",
@@ -182,7 +154,7 @@ public class MainCalcActivity extends AppCompatActivity implements CalcViewInter
 
         buttonBackspace.setOnClickListener(v -> {
             final int resListSize = resultList.size() - ONE_VALUE;
-            if (resultList != null && !resultList.isEmpty()) {
+            if (!resultList.isEmpty()) {
                 resultList.remove(resListSize);
                 viewResult(getStringOfArray(resultList));
             }
@@ -191,6 +163,14 @@ public class MainCalcActivity extends AppCompatActivity implements CalcViewInter
                 viewResult("0");
             }
 
+            showTextFromSecondApp();
+
+        });
+
+        chooseThemeButton.setOnClickListener(v -> {
+            Intent runThemeChooser = new Intent(MainCalcActivity.this,
+                    ThemeChooserActivity.class);
+            startActivityForResult(runThemeChooser, REQUEST_THEME_TYPE);
         });
     }
 
@@ -232,5 +212,40 @@ public class MainCalcActivity extends AppCompatActivity implements CalcViewInter
             viewResult(String.valueOf(result));
         }
 
+    }
+
+    private void setNumberButtonListeners() {
+
+        for (int i = 0; i < arrayButtonsIDs.length; i++) {
+            int index = i;
+            findViewById(arrayButtonsIDs[i]).setOnClickListener(v -> {
+                resultList.add(String.valueOf(index));
+                viewResult(getStringOfArray(resultList));
+            });
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == REQUEST_THEME_TYPE) {
+            if (resultCode == Activity.RESULT_OK) {
+                ThemesVariants theme = ThemesVariants.valueOf(data.getStringExtra("theme"));
+                themeSaver.setCurrentTheme(theme);
+                recreate();
+            }
+        }
+    }
+
+     protected void showTextFromSecondApp()
+    {
+        Intent intent = getIntent();
+        Bundle bundle = intent.getExtras();
+        if(bundle == null){
+            return;
+        }
+        String text = bundle.getString(TEXT);Toast toast = Toast.makeText(getApplicationContext(), text, Toast.LENGTH_LONG);
+        toast.show();
     }
 }
