@@ -8,12 +8,10 @@ import gu_android_1089.simplecalculator.main_logic.ThemesVariants;
 public class ThemeSaver {
     private static final String THEME_KEY = "THEME_KEY";
 
-    private Context context;
-    private SharedPreferences sharedPreferences;
+    private final SharedPreferences sharedPreferences;
 
     public ThemeSaver(Context context) {
-        this.context = context;
-        sharedPreferences = context.getSharedPreferences("ThemeChoice", context.MODE_PRIVATE);
+        sharedPreferences = context.getSharedPreferences("ThemeChoice", Context.MODE_PRIVATE);
     }
 
     public ThemesVariants getCurrentTheme() {
